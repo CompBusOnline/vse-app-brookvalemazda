@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Vehicle Search Engine</title>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    <script type="text/javascript" src="//cdn.worldsecuresystems.com/bcapi/bcapi-0.1.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+
+
+		
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/foundation/dataTables.foundation.css">
+
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/app.css">
+
+	<script src="js/vendor/modernizr.js"></script>
+</head>
+ 
+<body>
+{module_webapps collection="info" template="" id="27091" filter="all"}
+<div class="bread-crumbs">
+	<ul>
+		<li  class="active"><a  href="index.html">All Vehicles</a></li>
+		<li><a href="demo.html">Demo Vehicles</a></li>
+		<li><a  href="used.html">Used Vehicles</a></li>
+	</ul>
+</div>
+
+<div class="content-main-wrapper column">
+	<div class="content-wrapper" id="all-vehicles">
+	<h2></h2>
+		<div class="search-filter">
+			<h3>Filter Results by</h3>
+			<div class="input-filter-wrapper">
+			  <div class="small-6 large-6 columns">
+					 <div class="small-3 large-3 columns">
+					 	<label>Make</label>
+					 	<select name="makeCode"></select>
+					 </div>
+					 <div class="small-3 large-3 columns">
+					 	<label>Status</label>
+					 	<select name="status" >
+					 		<option value=""> -- Select -- </option>
+					 		<option value="In Stock">In Stock</option>
+					 		<option value="Sold">Sold</option>
+					 	</select>
+					 </div>
+					 <div class="small-3 large-3 columns">
+					 	<label for="model">Model</label>
+					 <select name="model"></select>
+					 </div>
+					 <div class="small-3 large-3 columns">
+					 	<label for="body_desc">Keyword</label>
+					 	<input type="text" id="keyword">
+					 </div>
+			  </div>
+			  <div class="small-6 large-6 columns"><br>
+			  	<button class=" small-button right basic-button reset-btn">Reset</button>
+				<button class=" small-button right blue-btn">Filter</button>
+			</div>
+			</div>
+		</div>
+
+		<div class="main-content">
+
+			<table id="all-vehicles-tbl" class="custom">
+				<thead>
+				<tr>
+					<th class="th-image">Image</th>
+					<th class="th-stock_no">Stock No.</th>
+					<th class="th-status">Status</th>
+					<th class="th-make">Make</th>
+					<th class="th-model">Model</th>
+					<th class="th-series">Series</th>
+					<th class="th-year">Year</th>
+					<th class="th-rego">Rego</th>
+					<th class="th-colour">Colour</th>
+					<th class="th-price">Price</th>
+					<th class="th-kms">Kms</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in info.items %}
+
+                <tr>
+					<td><a href="edit.html#&id={{item.itemid}}" class="popup-trigger"><img src="/Images/Car_Just_Arrived.jpg" id="stock_{{item.StockNumber}}" data-src="/files/images/{{item.StockNumber}}_1.jpg"  data-stock_no="{{item.StockNumber}}" class="thumb-img"></a></td>
+				
+					<td><a href="edit.html#&id={{item.itemid}}" class="popup-trigger">{{item.StockNumber}}</a></td>
+					<td class="{{item.Status}}">{{item.Status}}</td>
+					<td>{{item.MakeCode}}</td>
+					<td>{{item.Model}}</td>
+					<td>{{item.Series}}</td>
+					<td>{{item.Year}}</td>
+					<td>{{item.Rego}}</td>
+					<td>{{item.Color}}</td>
+					<td  class="td-price" data-price='{{item.Price}}'  >${{item.Price}}</td>
+					<td  class="td-kms" data-kms='{{item.Miles}}' >{{item.Miles}}</td>
+				</tr>
+                {% endfor %}
+            </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+                                            
+<script type="text/javascript" charset="utf8" src="js/general.js"></script>                                        
+</body>
+</html>
